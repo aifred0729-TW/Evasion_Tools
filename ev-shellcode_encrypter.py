@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import random
+import string
 
 banner = """
   ██████  ██░ ██ ▓█████  ██▓     ██▓     ▄████▄   ▒█████  ▓█████▄ ▓█████ 
@@ -32,7 +33,7 @@ print(banner)
 
 
 
-mode_arr = [['Caesar', 1], ['shellcode', 2]]
+mode_arr = [['Caesar', 1], ['XOR', 2]]
 
 def get_shellcode():
     print("====================================")
@@ -63,6 +64,8 @@ def caesar(shellcode):
     offset = random.randint(2, 24)
     print("[*] Module : Caesar Encode")
     print("[*] Generate offset " + str(offset))
+    print("[*] Here is your code should be add to C#")
+    print("for (int i = 0; i < buf.Length; i++){buf[i] = (byte)(((uint)buf[i] - " + str(offset) + ")& 0xFF);}")
     encrypt = []
     for i in shellcode:
         encrypt_line = []
@@ -70,6 +73,24 @@ def caesar(shellcode):
             encrypt_line.append((j + offset) % 256)
         encrypt.append(encrypt_line)
     return encrypt
+
+def xor(shellcode):
+    letters = string.ascii_lowercase
+    key = ''.join(random.choice(letters) for i in range(12))
+    key_list = [ord(a) for a in key]
+    result = []
+    print("[*] Module : XOR")
+    print("[*] Your XOR key is " + key)
+    print("[*] Here is your code should be add to C#")
+    print('string meow = "' + key + '";')
+    print('for (int i = 0; i < 6; i++){buf[i] = (byte)((uint)buf[i] ^ (uint)meow[i]);}')
+    print('for (int i = 6; i < buf.Length; i++){buf[i] = (byte)((uint)buf[i] ^ (uint)meow[(i - 6) % 12]);}')
+    for i in shellcode:
+        tmp = []
+        for j in range(len(i)):
+            tmp.append(i[j] ^ key_list[j])
+        result.append(tmp)
+    return result
 
 def show_shellcode(data):
     count = 0
@@ -97,6 +118,7 @@ def show_shellcode(data):
 
 shellcode = get_shellcode()
 while True:
+    print("=======================================================")
     print("{:<10}{:2}".format("Modules", "ID"))
     print("{:<10}{:2}".format("-"*8, "-"*3))
     for i in mode_arr:
@@ -108,6 +130,8 @@ while True:
     if id == 1:
         data = caesar(shellcode)
     elif id == 2:
+        data = xor(shellcode)
+    elif id == 3:
         shellcode = get_shellcode()
     id = 0
     show_shellcode(data)
