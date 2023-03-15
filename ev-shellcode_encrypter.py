@@ -67,7 +67,7 @@ def caesar(shellcode):
     for i in shellcode:
         encrypt_line = []
         for j in i:
-            encrypt_line.append((j + offset) % 255)
+            encrypt_line.append((j + offset) % 256)
         encrypt.append(encrypt_line)
     return encrypt
 
