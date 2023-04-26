@@ -1,0 +1,6 @@
+\\192.168.1.30\PEN-300_workspace\word\bin\x64\Release\word.dll
+\\192.168.1.30\PEN-300_workspace\word\bin\x64\Release\word.pdb
+\\192.168.1.30\PEN-300_workspace\word\obj\x64\Release\word.csproj.AssemblyReference.cache
+\\192.168.1.30\PEN-300_workspace\word\obj\x64\Release\word.csproj.CoreCompileInputs.cache
+\\192.168.1.30\PEN-300_workspace\word\obj\x64\Release\word.dll
+\\192.168.1.30\PEN-300_workspace\word\obj\x64\Release\word.pdb
