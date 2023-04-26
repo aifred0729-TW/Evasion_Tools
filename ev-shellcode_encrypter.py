@@ -88,7 +88,7 @@ def caesar(shellcode, mode):
     if mode == "csharp":
         print("for (int i = 0; i < buf.Length; i++){buf[i] = (byte)(((uint)buf[i] - " + str(offset) + ")& 0xFF);}")
     if mode == "c":
-        print("for (int i = 0; i < buf.Length; i++){buf[i] = (byte)(((uint)buf[i] - " + str(offset) + ")& 0xFF);}")
+        print("笑死 我還沒做這功能")
     result = []
     for i in shellcode:
         encrypt_line = [(a + offset) % 256 for a in i]
