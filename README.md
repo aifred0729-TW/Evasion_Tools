@@ -1,5 +1,3 @@
-# Shellcode Encrypter
-
-## GOOD TOOL
+# GOOD TOOL
 
 ## :D
